@@ -1,5 +1,6 @@
 * {
   margin: 0;
+  padding: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
   font-weight: bold;
@@ -10,4 +11,31 @@ body {
 }
 
 .grid-container {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  min-height: 100dvh;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: minmax(100px, auto) repeat(5, 100px);
+}
+
+.grid-container > .output {
+  grid-column: 1 / -1;
+}
+
+.grid-container > button {
+  cursor: pointer;
+  font-size: 2rem;
+  border: 1px solid #111;
+  outline: none;
+  background-color: #111;
+  color: #eee;
+}
+
+.grid-container > .operator {
+  background-color: #41b88375;
+}
+
+.span-two {
+  grid-column: span 2;
 }
