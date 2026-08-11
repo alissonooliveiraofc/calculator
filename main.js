@@ -20,6 +20,13 @@ class Calculator {
     this.currentOperand = `${this.currentOperand}${number.toString()}`;
   }
 
+  chooseOperation(operation) {
+    this.operation = operation;
+
+    this.previousOperand = `${this.currentOperand} ${this.operation}`;
+    this.currentOperand = "";
+  }
+
   clear() {
     this.currentOperand = "";
     this.previousOperand = "";
@@ -40,6 +47,13 @@ const calculator = new Calculator(
 for (const numberButton of numberBtn) {
   numberButton.addEventListener("click", () => {
     calculator.appendNumber(numberButton.innerText);
+    calculator.updateDisplay();
+  });
+}
+
+for (const operationButton of operationBtn) {
+  operationButton.addEventListener("click", () => {
+    calculator.chooseOperation(operationButton.innerText);
     calculator.updateDisplay();
   });
 }
