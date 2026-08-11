@@ -61,6 +61,10 @@ class Calculator {
     this.previousOperand = "";
   }
 
+  delete() {
+    this.currentOperand = this.currentOperand.toString().slice(0, -1);
+  }
+
   clear() {
     this.currentOperand = "";
     this.previousOperand = "";
@@ -99,5 +103,10 @@ allClearBtn.addEventListener("click", () => {
 
 equalsBtn.addEventListener("click", () => {
   calculator.calculate();
+  calculator.updateDisplay();
+});
+
+deleteBtn.addEventListener("click", () => {
+  calculator.delete();
   calculator.updateDisplay();
 });

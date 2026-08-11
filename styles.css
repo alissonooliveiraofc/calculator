@@ -59,6 +59,11 @@ body {
   background-color: #41b88375;
 }
 
+.grid-container > [data-equals] {
+  background-color: #41b883;
+  color: white;
+}
+
 .span-two {
   grid-column: span 2;
 }
