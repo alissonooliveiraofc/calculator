@@ -21,10 +21,44 @@ class Calculator {
   }
 
   chooseOperation(operation) {
+    if (this.previousOperand !== "") {
+      this.calculate();
+    }
+
     this.operation = operation;
 
-    this.previousOperand = `${this.currentOperand} ${this.operation}`;
+    this.previousOperand = `${this.currentOperand}`;
     this.currentOperand = "";
+  }
+
+  calculate() {
+    let result;
+
+    const previous = parseFloat(this.previousOperand);
+    const current = parseFloat(this.currentOperand);
+
+    if (isNaN(previous) || isNaN(current)) return;
+
+    switch (this.operation) {
+      case "+":
+        result = previous + current;
+        break;
+      case "-":
+        result = previous - current;
+        break;
+      case "*":
+        result = previous * current;
+        break;
+      case "÷":
+        result = previous / current;
+        break;
+      default:
+        return;
+    }
+
+    this.currentOperand = result;
+    this.operation = undefined;
+    this.previousOperand = "";
   }
 
   clear() {
@@ -34,7 +68,7 @@ class Calculator {
   }
 
   updateDisplay() {
-    this.previousOperandTextElement.innerText = this.previousOperand;
+    this.previousOperandTextElement.innerText = `${this.previousOperand} ${this.operation || ""}`;
     this.currentOperandTextElement.innerText = this.currentOperand;
   }
 }
@@ -60,5 +94,10 @@ for (const operationButton of operationBtn) {
 
 allClearBtn.addEventListener("click", () => {
   calculator.clear();
+  calculator.updateDisplay();
+});
+
+equalsBtn.addEventListener("click", () => {
+  calculator.calculate();
   calculator.updateDisplay();
 });
