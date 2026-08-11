@@ -24,7 +24,7 @@ class Calculator {
     if (isNaN(integerDigits)) {
       integerDisplay = "";
     } else {
-      integerDisplay = integerDigits.toLocaleString("en", {
+      integerDisplay = integerDigits.toLocaleString("pt-BR", {
         maximumFractionDigits: 0,
       });
     }
